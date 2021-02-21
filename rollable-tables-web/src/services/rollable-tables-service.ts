@@ -17,4 +17,8 @@ export class RollableTablesService {
     getAllTables(userId: string): Observable<Array<RollableTable>> {
         return this.http.get<any[]>(`${this.apiUrl}dev/tables/${userId}`, { responseType: 'json' });
     }
+
+    upsertTable(table: RollableTable): Observable<any> {
+        return this.http.post(`${this.apiUrl}dev/tables`, table, { responseType: 'json' }); 
+    }
 }

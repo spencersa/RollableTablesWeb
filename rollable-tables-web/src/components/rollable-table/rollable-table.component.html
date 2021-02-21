@@ -2,7 +2,15 @@
     <h5>
         {{table.tableName}}
     </h5>
-    <table class="table table-striped">
+    <div>
+        <button type="button" (click)="setRandomValue(table)" class="btn btn-primary">Roll!</button>
+        {{rollValue}}
+        <button type="button" (click)="toggleEditMode()" class="btn btn-primary">Edit</button>
+    </div>
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <table *ngIf="!isLoading" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -13,18 +21,30 @@
             <ng-container *ngFor="let row of table.data; index as i">
                 <tr *ngIf="row.children">
                     <td scope="row">{{ i + 1 }}</td>
-                    <td colspan="2">{{row.value}}</td>
+                    <td colspan="2">
+                        <table-value (tableOutput)="updateTable($event)" [table]="table" [index]="i"
+                            [value]="row.value" [isEditing]="isEditing"></table-value>
+                    </td>
                 </tr>
                 <tr *ngFor="let child of row.children; index as ix">
                     <td>&#160;</td>
                     <td scope="row">{{ ix + 1 }}</td>
-                    <td>{{child.value}}</td>
+                    <td>
+                        <table-value (tableOutput)="updateTable($event)" [table]="table" [index]="i" [childIndex]="ix"
+                            [value]="child.value" [isEditing]="isEditing"></table-value>
+                    </td>
                 </tr>
                 <tr *ngIf="!row.children">
                     <td scope="row">{{ i + 1 }}</td>
-                    <td colspan="2">{{row.value}}</td>
+                    <td colspan="2">
+                        <table-value (tableOutput)="updateTable($event)" [table]="table" [index]="i"
+                            [value]="row.value" [isEditing]="isEditing"></table-value>
+                    </td>
                 </tr>
             </ng-container>
+            <tr>
+                <td colspan="99"> <button type="button" (click)="addValue()" class="btn btn-primary">Add value</button></td>
+            </tr>
         </tbody>
     </table>
 </div>

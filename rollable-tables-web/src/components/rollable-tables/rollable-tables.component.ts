@@ -11,19 +11,24 @@ import { RollableTablesService } from 'src/services/rollable-tables-service';
 export class RollableTablesComponent implements OnInit {
 
   userId = '73598f17-b26d-49d6-b34d-99cecfa4f592';
+  isLoading: boolean = false;
   tables: Array<RollableTable> = [];
   constructor(private rollableTablesService: RollableTablesService) {
-      
-   }
+
+  }
 
   ngOnInit(): void {
     this.getAllTables();
   }
 
   getAllTables() {
+    this.isLoading = true;
     this.rollableTablesService.getAllTables(this.userId).subscribe(
       data => {
         this.tables = data;
-      });
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
   }
 }

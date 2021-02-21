@@ -1,0 +1,17 @@
+<div class="cointainer">
+    <div class="row">
+        <div (blur)="updateList($event)" class="col col-sm-10" (keydown.enter)="$event.preventDefault()" (keyup.enter)="updateList($event)"
+            contenteditable="true">
+            {{value}}
+        </div>
+        <div class="col col-sm-1" (click)="makeSubValue()" *ngIf="isEditing && childIndex === undefined">
+            <i [hidden]="index === 0" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </div>
+        <div class="col col-sm-1" (click)="makeMainValue()" *ngIf="isEditing && childIndex !== undefined">
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col col-sm-1" *ngIf="isEditing">
+            <i (click)="removeItem()" class="fa fa-times" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>

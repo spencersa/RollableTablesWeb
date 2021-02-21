@@ -1,4 +1,4 @@
-export interface RollableTableValues {
+export interface RollableTableValue {
     value: string;
-    children?: Array<RollableTableValues>
+    children?: Array<RollableTableValue>
 }
