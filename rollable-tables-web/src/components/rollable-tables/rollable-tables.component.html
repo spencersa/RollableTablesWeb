@@ -4,6 +4,27 @@
 <div [hidden]="isLoading" *ngFor="let table of tables">
     <rollable-table [table]="table"></rollable-table>
 </div>
+
 <div>
-    <button class="btn btn-primary">Create Table</button>
+    <button type="button" (click)="createTableModal.show()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Create Table
+    </button>
 </div>
+
+<app-modal #createTableModal>
+    <div class="app-modal-header">
+        Create Table
+    </div>
+    <div class="app-modal-body">
+        <form (keyup.enter)="createTableModal.hide()">
+            <div class="form-group">
+                <label>Table Name</label>
+                <input type="text" name="tablename" class="form-control"placeholder="Table Name">
+            </div>
+        </form>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-primary"(click)="createTableModal.hide()">Create</button>
+        <button type="button" class="btn btn-danger" (click)="createTableModal.hide()">Cancel</button>
+    </div>
+</app-modal>

@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ModalComponent } from 'src/components/modal/modal.component';
 import { RollableTableComponent } from 'src/components/rollable-table/rollable-table.component';
 import { RollableTablesComponent } from 'src/components/rollable-tables/rollable-tables.component';
 import { TableValueComponent } from 'src/components/table-value/table-value.component';
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
     AppComponent,
     RollableTableComponent,
     RollableTablesComponent,
-    TableValueComponent
+    TableValueComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
