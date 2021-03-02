@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rollabletablesweb-dev-103857-authRole",
+      "UnauthRoleArn": "arn:aws:iam::755070949549:role/amplify-rollabletablesweb-dev-103857-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::755070949549:role/amplify-rollabletablesweb-dev-103857-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-rollabletablesweb-dev-103857-deployment",
+      "UnauthRoleName": "amplify-rollabletablesweb-dev-103857-unauthRole",
+      "StackName": "amplify-rollabletablesweb-dev-103857",
+      "StackId": "arn:aws:cloudformation:us-east-2:755070949549:stack/amplify-rollabletablesweb-dev-103857/499e8c10-791a-11eb-b338-06994f12b84a",
+      "AmplifyAppId": "d3m4nrn2glcogx"
+    },
+    "categories": {
+      "auth": {
+        "rollabletablesweb52c978ea": {}
+      }
+    }
+  }
+}

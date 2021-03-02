@@ -1,6 +1,9 @@
+<amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
 
-<div class="container">
-  <rollable-tables></rollable-tables>
+<div *ngIf="(authState === 'signedin' && user)">
+  <div class="container">
+    <rollable-tables [userId]="user?.username"></rollable-tables>
+    <amplify-sign-out></amplify-sign-out>
+  </div>
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>

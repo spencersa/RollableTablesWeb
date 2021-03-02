@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RollableTablesService } from 'src/services/rollable-tables-service';
+import { Component, ChangeDetectorRef, OnInit, NgZone } from '@angular/core';
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,22 @@ import { RollableTablesService } from 'src/services/rollable-tables-service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  user: CognitoUserInterface | undefined;
+  authState: AuthState | undefined;
+
+  constructor(private cdRef: ChangeDetectorRef, private ngZone: NgZone) { }
+
+  ngOnInit() {
+    onAuthUIStateChange((authState, authData) => {
+      this.authState = authState;
+      this.user = authData as CognitoUserInterface;
+      this.ngZone.run(() => this.cdRef.detectChanges());
+    })
+  }
+
+  ngOnDestroy() {
+    return onAuthUIStateChange;
+  }
 }

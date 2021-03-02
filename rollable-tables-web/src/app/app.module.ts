@@ -6,9 +6,11 @@ import { RollableTableComponent } from 'src/components/rollable-table/rollable-t
 import { RollableTablesComponent } from 'src/components/rollable-tables/rollable-tables.component';
 import { TableValueComponent } from 'src/components/table-value/table-value.component';
 import { RollableTablesService } from 'src/services/rollable-tables-service';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AmplifyService } from 'aws-amplify-angular';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,10 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AmplifyUIAngularModule
   ],
-  providers: [RollableTablesService],
+  providers: [RollableTablesService, AmplifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

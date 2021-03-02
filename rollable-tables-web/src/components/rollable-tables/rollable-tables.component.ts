@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RollableTable } from 'src/models/rollabe-table.model';
 import { RollableTablesService } from 'src/services/rollable-tables-service';
 
@@ -9,12 +9,11 @@ import { RollableTablesService } from 'src/services/rollable-tables-service';
 })
 
 export class RollableTablesComponent implements OnInit {
-
-  userId = '73598f17-b26d-49d6-b34d-99cecfa4f592';
+  @Input() userId: string | undefined;
   isLoading: boolean = false;
-  tables: Array<RollableTable> = [];
+  tables: Array<RollableTable>;
   constructor(private rollableTablesService: RollableTablesService) {
-
+    this.tables = [];
   }
 
   ngOnInit(): void {
@@ -23,7 +22,8 @@ export class RollableTablesComponent implements OnInit {
 
   getAllTables() {
     this.isLoading = true;
-    this.rollableTablesService.getAllTables(this.userId).subscribe(
+    let userId = this.userId === undefined ? '' : this.userId;
+    this.rollableTablesService.getAllTables(userId).subscribe(
       data => {
         this.tables = data;
       },
